@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 
 /**
@@ -25,6 +27,18 @@ public class StudentsActivity extends ListActivity {
         startManagingCursor( cursor );
         mCA = new SimpleCursorAdapter(this, R.layout.row, cursor, from, to );
 
+        mCA.setViewBinder( new SimpleCursorAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                if ( columnIndex == 3 ) {
+                    ((ImageView)view).setImageResource(
+                            (cursor.getInt(columnIndex) == 0) ?
+                                   R.drawable.emo_im_sad : R.drawable.emo_im_cool );
+                    return true;
+                }
+                return false;
+            }
+        });
         setListAdapter( mCA );
     }
 }
