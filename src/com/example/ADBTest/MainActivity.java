@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
         StudentsAdapter sa = new StudentsAdapter( this );
         sa.insertStudent( 1, "John", false );
         sa.insertStudent( 2, "Mary", true );
+        sa.close();
 
     }
 
@@ -24,4 +25,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, StudentsActivity.class);
         startActivity( intent );
     }
+    public void buttonClickedSettings( View view ) {
+        Intent intent = new Intent(this, OptionsActivity.class);
+        startActivity( intent );
+    }
+
 }

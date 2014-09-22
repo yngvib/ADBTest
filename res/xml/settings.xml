@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+            android:title="Title"
+            android:key="cat_title">
+    <Preference
+        android:id="@+id/pref_uncool"
+        android:title="Reset"
+        android:summary="Reset all students to uncool"
+        android:key="pref_uncool" />
+    </PreferenceCategory>
+</PreferenceScreen>

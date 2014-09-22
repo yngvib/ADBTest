@@ -53,7 +53,33 @@ public class StudentsAdapter {
         contentValues.put( cols[2], name );
         contentValues.put( cols[3], cool ? "1" : "0" );
         openToWrite();
-        long value = db.update(DbHelper.TableStudent, contentValues, cols[1] + sid, null );
+        long value = db.update(DbHelper.TableStudent,
+                               contentValues,
+                               cols[1] + "=" + sid, null );
+        close();
+        return value;
+    }
+
+    public long updateAllStudentsCoolness( boolean cool ) {
+        String[] cols = DbHelper.TableStudentCols;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put( cols[3], cool ? "1" : "0" );
+        openToWrite();
+        long value = db.update(DbHelper.TableStudent,
+                contentValues,
+                null, null );
+        close();
+        return value;
+    }
+
+    public long updateStudentCoolness( long id, boolean cool ) {
+        String[] cols = DbHelper.TableStudentCols;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put( cols[3], cool ? "1" : "0" );
+        openToWrite();
+        long value = db.update(DbHelper.TableStudent,
+                contentValues,
+                cols[0] + "=" + id, null );
         close();
         return value;
     }
@@ -69,7 +95,7 @@ public class StudentsAdapter {
         openToRead();
         String[] cols = DbHelper.TableStudentCols;
         Cursor cursor = db.query( DbHelper.TableStudent,
-                cols, cols[1] + "" + sid, null, null, null, null);
+                cols, cols[1] + "=" + sid, null, null, null, null);
         return cursor;
     }
 
